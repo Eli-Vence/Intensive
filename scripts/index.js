@@ -1,12 +1,13 @@
 import start from "./modules/start.js"; 
 import getFormPerson from "./modules/formPerson.js";
+import readyPlane from "./modules/readyPlane.js";
 
 const init = (selectorApp, title) => {
   const app = document.querySelector(selectorApp);
 
   const {main, firstForm} = start(app, title);
 
-  firstForm.addEventListener('submit', (event) =>{
+  firstForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
     const forms = getFormPerson(firstForm.count.value);
@@ -14,6 +15,8 @@ const init = (selectorApp, title) => {
     firstForm.remove();
 
     main.append(...forms); //раскрываем массив 
+
+    readyPlane(forms, main);
   })
 };
 
